@@ -38,31 +38,12 @@ var placeInit = function() {
 
 };
 
-
-
-  //Create Marker object using using the array of location objects in the "Model"
-
-
-  /*model.markers.forEach(function(obj) {
-
-
-    var marker = new google.maps.Marker({
-
-      position: {
-        lat: obj.lat,
-        lng: obj.lng
-      },
-      title: obj.title,
-      map: map,
-      animation: google.maps.Animation.DROP,
-
-
-    });
-  });*/
+//Initialze the Markers by iterating over the places
 var markerInit = function(){
 
   places.forEach(function(obj){
 
+//Create "google.maps.Marker object"
   var marker = new google.maps.Marker(
     {
     position: {lat: obj.position.lat,lng: obj.position.lng},
@@ -71,6 +52,15 @@ var markerInit = function(){
     animation: google.maps.Animation.DROP,
   }
 );
+
+//  Create the infowindow
+var infowindow = new google.maps.InfoWindow({
+    content: obj.info
+  });
+
+//Create the Clickevent that will make "infowindow" appear
+marker.addListener("click",function(){infowindow.open(map,marker);});
+
   console.log(obj.title);
 });
 };

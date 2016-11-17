@@ -3,7 +3,7 @@ var places =  [ {
       position:{lat: 50.764547,
       lng: 7.3593},
       url: 'http://www.butterflyhouse.org',
-      info:"test info"
+      info:"test info",
       highlight: ko.observable(false),
 
 
