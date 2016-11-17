@@ -25,27 +25,19 @@ var mapInit = function() {
 };
 
 
+var placeInit = function() {
 
-var ViewModel = function(){
+    this.placeList = ko.observableArray([]);
 
-var self = this;
+    //From the Model bring the Places into the ViewModel
+    places.forEach(function(obj){
+      this.placeList.push(new Place(obj));
+    });
 
-  mapInit();
-
-self.placeList = ko.observableArray([]);
-
-  //From the Model bring the Places into the ViewModel
-  places.forEach(function(obj){
-    self.placeList.push(new Place(obj));
-
-
-
-  });
-self.currentPlace = self.placeList()[0];
-console.log(self.currentPlace.title());
 
 
 };
+
 
 
   //Create Marker object using using the array of location objects in the "Model"
@@ -67,13 +59,39 @@ console.log(self.currentPlace.title());
 
     });
   });*/
+var markerInit = function(){
+
+  places.forEach(function(obj){
+
+  var marker = new google.maps.Marker(
+    {
+    position: {lat: obj.position.lat,lng: obj.position.lng},
+    title: obj.title,
+    map: map,
+    animation: google.maps.Animation.DROP,
+  }
+);
+  console.log(obj.title);
+});
+};
 
 
 
-var menuInit = function() {
-}
 
 
+
+
+
+var ViewModel = function(){
+
+var self = this;
+
+  mapInit();
+  placeInit();
+  markerInit();
+
+
+};
 
 
 ko.applyBindings(new ViewModel());
