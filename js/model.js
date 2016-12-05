@@ -1,5 +1,5 @@
 var places =  [ {
-    title: 'Castle Blankenberg',
+    title: 'Stadt Blankenberg',
       position:{lat: 50.764547,
       lng: 7.3593},
       url: 'http://www.butterflyhouse.org',
@@ -19,7 +19,7 @@ var places =  [ {
 
   },
   {
-    title: 'Kur Theater',
+    title: 'Kurtheater Hennef',
       position:{lat: 50.7751605,
       lng: 7.2744653},
       url: 'http://www.kurtheaterhennef.de',
@@ -29,7 +29,7 @@ var places =  [ {
 
   },
   {
-    title: 'The River Sieg Estuary',
+    title: 'Sieg (Fluss)',
       position:{lat: 50.768611,
       lng: 7.075556},
       url: 'https://en.wikipedia.org/wiki/Sieg',

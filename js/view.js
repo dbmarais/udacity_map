@@ -53,17 +53,66 @@ var markerInit = function(){
   }
 );
 
-//  Create the infowindow
-var infowindow = new google.maps.InfoWindow({
-    content: obj.info
-  });
+//  Create the infowindow for each Place in the Places Array
+var wikiStr = "http://de.wikipedia.org/w/api.php?action=opensearch&search=" + obj.title + "&format=json&callback=wikiCallback";
+//var wikiRequestTimeOut = setTimeout(function(){$wikiElem.text("Faluire of the internet to deliver the Wiki Articles");},8000);
+
+
+//Create a new infowindow for each Place in the Places Array
+var infowindow = new google.maps.InfoWindow();
+
+//Content of the infoinfowindow is set inside the ajax request inside a callback function
+function wikiRequest(){
+  $.ajax({
+  url: wikiStr,
+  dataType: "jsonp",
+  success: function(response) {
+    var wikiSummary = response[2][0];
+    infowindow.setContent(wikiSummary);
+    infowindow.open(map,marker);
+  },
+  error: function(request,status,error){
+    alert(request.responseText);
+
+
+  }
+
+
+});
+}
+
+
+
+
+
+
+
+
 
 //Create the Clickevent that will make "infowindow" appear
-marker.addListener("click",function(){infowindow.open(map,marker);});
+marker.addListener("click", function(){
 
-  console.log(obj.title);
+  infowindow.close();
+  wikiRequest();
+});
+
+
+
+//get Wiki article to go into the infowindow
+
+
+
+
+
+
+
+
 });
 };
+
+
+
+
 
 
 
