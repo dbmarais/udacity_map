@@ -38,6 +38,12 @@ var placeInit = function() {
 
 };
 
+//Create an array of markers
+
+var markerList = [];
+
+
+
 //Initialze the Markers by iterating over the places
 var markerInit = function(){
 
@@ -54,7 +60,7 @@ var markerInit = function(){
 );
 
 //  Create the infowindow for each Place in the Places Array
-var wikiStr = "http://de.wikipedia.org/w/api.php?action=opensearch&search=" + obj.title + "&format=json&callback=wikiCallback";
+var wikiStr = "http://de.wikipedia.org/w/api.php?action=opensearch&search=" + obj.title+ "&format=json&callback=wikiCallback";
 //var wikiRequestTimeOut = setTimeout(function(){$wikiElem.text("Faluire of the internet to deliver the Wiki Articles");},8000);
 
 
@@ -88,11 +94,9 @@ function wikiRequest(){
 
 
 
-
 //Create the Clickevent that will make "infowindow" appear
 marker.addListener("click", function(){
 
-  infowindow.close();
   wikiRequest();
 });
 
@@ -109,6 +113,7 @@ marker.addListener("click", function(){
 
 });
 };
+
 
 
 
