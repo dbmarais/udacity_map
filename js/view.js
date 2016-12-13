@@ -69,7 +69,7 @@ var wikiStr = "http://de.wikipedia.org/w/api.php?action=opensearch&search=" + ob
 //Create a new infowindow for each Place in the Places Array
 marker[index].infowindow = new google.maps.InfoWindow();
 
-//Content of the infoinfowindow is set inside the ajax request inside a callback function.
+//Content of the 'markerObj.infowindow' is set inside the ajax request inside a callback function.
 //The 'markerObj' is passed to apply the changes to 'markerObj.infowindow'
 function wikiRequest(markerObj){
   $.ajax({
@@ -90,25 +90,32 @@ function wikiRequest(markerObj){
 });
 }
 
+//Animate the 'markerObj'  to Bounce on click
+function toggleBounce(markerObj) {
+  if (markerObj.getAnimation() !== null) {
+    markerObj.setAnimation(null);
+  } else {
+    markerObj.setAnimation(google.maps.Animation.BOUNCE);
 
-
-
-
-
+    //Timeout set for the bounce of the 'markerObj' to achieve single bounce
+    setTimeout(function(){markerObj.setAnimation(null); }, 700);
+  }
+}
 
 
 //Create the Clickevent that will make "infowindow" appear t
 marker[index].addListener("click", function(){
-//cloase all other infowindows
 
-marker.forEach(function(obj){
-  obj.infowindow.close();
+//Close all 'markerObj.infowindows' in the 'marker' Array so that only one 'infowindow' is visible at any given time
+marker.forEach(function(markerObj){
+  markerObj.infowindow.close();
+  markerObj.setAnimation(null);
 });
 
 //the Maker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
   wikiRequest(this);
+  toggleBounce(this);
 });
-
 
 
 
