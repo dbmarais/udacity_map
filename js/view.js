@@ -38,19 +38,21 @@ var placeInit = function() {
 
 };
 
-//Create an array of markers
 
-var markerList = [];
+
+
 
 
 
 //Initialze the Markers by iterating over the places
 var markerInit = function(){
 
-  places.forEach(function(obj){
+var marker =[];
+
+  places.forEach(function(obj,index){
 
 //Create "google.maps.Marker object"
-  var marker = new google.maps.Marker(
+    marker[index] = new google.maps.Marker(
     {
     position: {lat: obj.position.lat,lng: obj.position.lng},
     title: obj.title,
@@ -65,17 +67,18 @@ var wikiStr = "http://de.wikipedia.org/w/api.php?action=opensearch&search=" + ob
 
 
 //Create a new infowindow for each Place in the Places Array
-var infowindow = new google.maps.InfoWindow();
+marker[index].infowindow = new google.maps.InfoWindow();
 
-//Content of the infoinfowindow is set inside the ajax request inside a callback function
-function wikiRequest(){
+//Content of the infoinfowindow is set inside the ajax request inside a callback function.
+//The 'markerObj' is passed to apply the changes to 'markerObj.infowindow'
+function wikiRequest(markerObj){
   $.ajax({
   url: wikiStr,
   dataType: "jsonp",
   success: function(response) {
     var wikiSummary = response[2][0];
-    infowindow.setContent(wikiSummary);
-    infowindow.open(map,marker);
+    markerObj.infowindow.setContent(wikiSummary);
+    markerObj.infowindow.open(map,markerObj);
   },
   error: function(request,status,error){
     alert(request.responseText);
@@ -94,15 +97,22 @@ function wikiRequest(){
 
 
 
-//Create the Clickevent that will make "infowindow" appear
-marker.addListener("click", function(){
+//Create the Clickevent that will make "infowindow" appear t
+marker[index].addListener("click", function(){
+//cloase all other infowindows
 
-  wikiRequest();
+marker.forEach(function(obj){
+  obj.infowindow.close();
+});
+
+//the Maker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
+  wikiRequest(this);
 });
 
 
 
-//get Wiki article to go into the infowindow
+
+
 
 
 
