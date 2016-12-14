@@ -1,11 +1,11 @@
 
 // Place Class from the model a
 var Place = function(obj){
-  var self = this;
 
-  self.title = ko.observable(obj.title);
-  self.postion = ko.observable(obj.position);
-  self.url = ko.observable(obj.url);
+
+  this.title = ko.observable(obj.title);
+  this.postion = ko.observable(obj.position);
+  this.url = ko.observable(obj.url);
 
 
 };
@@ -35,6 +35,20 @@ var placeInit = function() {
     });
 
 
+
+};
+
+
+
+
+var filterArray = function(){
+
+this.filteredItems = ko.computed(function(){
+  var filter = this.filter().toLowerCase();
+  if(!filter){
+    return this.marker;
+  }
+});
 
 };
 
@@ -115,7 +129,7 @@ marker.forEach(function(markerObj){
 //the Maker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
   wikiRequest(this);
   toggleBounce(this);
-});
+ });
 
 
 
@@ -151,8 +165,9 @@ var self = this;
   placeInit();
   markerInit();
 
-
 };
+
+
 
 
 ko.applyBindings(new ViewModel());
