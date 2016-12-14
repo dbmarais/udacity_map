@@ -11,9 +11,10 @@
 
       <div id="main-menu">
         <h2>Menu</h2>
-        <input class="search-input" type="text" name="name" value="Filter" data-bind="searchQuery" >
+        <input class="search-input" type="text" name="name" value="Filter" data-bind="value: query, valueUpdate:'afterkeydown'" >
+
         <div class="menu-item" data-bind="">
-          <ul data-bind="foreach: filteredPlaceList">
+          <ul data-bind="foreach: computedPlaceList">
             <li data-bind="text: title"></li>
           </ul>
         </div>

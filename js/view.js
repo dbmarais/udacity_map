@@ -29,16 +29,31 @@ var mapInit = function() {
 
 var placeInit = function() {
 
-  this.filter = ko.observable("");
 
 
-  this.filteredPlaceList = ko.computed(function(){
-    var filter = this.filter().toLowerCase();
-    if (!filter){
-      return ["bo"];
-    }
+//Value of the input box bound to observable for use by Knockout
+this.query = ko.observable();
 
-  });
+//maybe computed does not take the Push method
+this.computedPlaceList = ko.computed(function(){
+
+  if(!this.query()){
+
+    console.log("noFilter");
+
+//Complete places array is returned but only "places.title" are bound to the menu list.
+    return places;
+
+  } else {
+// 'ko.utils.arrayFilter' returns part of the array conforming to query
+    return ko.utils.arrayFilter(places,function(place){
+      return place.title.toLowerCase().indexOf(this.query().toLowerCase()) != -1;
+    });
+
+  }
+});
+
+
 
 };
 
