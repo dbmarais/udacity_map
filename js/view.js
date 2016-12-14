@@ -8,6 +8,7 @@ var Place = function(obj){
   this.url = ko.observable(obj.url);
 
 
+
 };
 
 var map;
@@ -25,32 +26,32 @@ var mapInit = function() {
 };
 
 
+
 var placeInit = function() {
 
-    this.placeList = ko.observableArray([]);
-
-    //From the Model bring the Places into the ViewModel
-    places.forEach(function(obj){
-      this.placeList.push(new Place(obj));
-    });
+  this.filter = ko.observable("");
 
 
+  this.filteredPlaceList = ko.computed(function(){
+    var filter = this.filter().toLowerCase();
+    if (!filter){
+      return ["bo"];
+    }
 
-};
-
-
-
-
-var filterArray = function(){
-
-this.filteredItems = ko.computed(function(){
-  var filter = this.filter().toLowerCase();
-  if(!filter){
-    return this.marker;
-  }
-});
+  });
 
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 

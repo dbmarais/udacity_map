@@ -13,7 +13,7 @@
         <h2>Menu</h2>
         <input class="search-input" type="text" name="name" value="Filter" data-bind="searchQuery" >
         <div class="menu-item" data-bind="">
-          <ul data-bind="foreach: placeList">
+          <ul data-bind="foreach: filteredPlaceList">
             <li data-bind="text: title"></li>
           </ul>
         </div>
