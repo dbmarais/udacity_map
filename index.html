@@ -12,10 +12,11 @@
       <div id="main-menu">
         <h2>Menu</h2>
         <input class="search-input" type="text" name="name" value="Filter" data-bind="value: query, valueUpdate:'afterkeydown'" >
+        <button type="button" name="button" data-bind="">CLick</button>
 
         <div class="menu-item" data-bind="">
           <ul data-bind="foreach: computedPlaceList">
-            <li data-bind="text: title"></li>
+            <li data-bind="text: title, click: $parent.selectItem"></li>
           </ul>
         </div>
       </div>

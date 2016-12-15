@@ -42,7 +42,7 @@ this.computedPlaceList = ko.computed(function(){
     console.log("noFilter");
 
 //Complete places array is returned but only "places.title" are bound to the menu list.
-    return places;
+    return marker;
 
   } else {
 // 'ko.utils.arrayFilter' returns part of the array conforming to query
@@ -77,7 +77,7 @@ this.computedPlaceList = ko.computed(function(){
 //Initialze the Markers by iterating over the places
 var markerInit = function(){
 
-var marker =[];
+ var marker = [ko.observable(null)];
 
   places.forEach(function(obj,index){
 
@@ -133,6 +133,9 @@ function toggleBounce(markerObj) {
 }
 
 
+
+
+
 //Create the Clickevent that will make "infowindow" appear t
 marker[index].addListener("click", function(){
 
@@ -142,9 +145,10 @@ marker.forEach(function(markerObj){
   markerObj.setAnimation(null);
 });
 
-//the Maker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
+//the Marker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
   wikiRequest(this);
   toggleBounce(this);
+  placeInit();
  });
 
 
@@ -159,11 +163,10 @@ marker.forEach(function(markerObj){
 
 
 });
+//pass the array of markers to the next scope. Correct way.
+this.markerArray = marker;
+
 };
-
-
-
-
 
 
 
@@ -180,6 +183,13 @@ var self = this;
   mapInit();
   placeInit();
   markerInit();
+console.log(markerArray);
+ this.selectItem = function(listItem) {
+   console.log(listItem);
+  google.maps.event.trigger(listItem, 'click');
+};
+
+
 
 };
 

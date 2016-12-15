@@ -22,3 +22,7 @@ float:left;
 
 position: relative;
 }
+
+.selected, ul li:hover {
+  color: #FFFFFF;
+  background-color: #2C70ED;
