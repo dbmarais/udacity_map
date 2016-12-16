@@ -17,9 +17,9 @@
         <input class="search-input" type="text" name="name" value="Filter" data-bind="value: query, valueUpdate:'afterkeydown'" >
         <button type="button" name="button" data-bind="">CLick</button>
 
-        <div class="menu-item" data-bind="">
+        <div class="menu-list" data-bind="">
           <ul data-bind="foreach: filteredMarkerList">
-            <li data-bind="text: title, click: $parent.selectItem"></li>
+            <li class = "menu-button" data-bind="text: title, click: $parent.selectItem"></li>
           </ul>
         </div>
       </div>

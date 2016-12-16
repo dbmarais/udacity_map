@@ -7,22 +7,45 @@ html, body {
 
 #main-menu {
   background-color: #404040;
-  width:20%;
+  width:10%;
   height:100%;
   float:left;
 
 }
 
 #map{
-
-height:100%;
-width:80%;
-float:left;
-
-
-position: relative;
+  height:100%;
 }
 
-.selected, ul li:hover {
+
+#main-menu{
+  position:absolute;
+  right: 10px;
+  bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+ul {
+  list-style-type: none;
+}
+ul li {
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  background-color: #FFFFFF;
+  line-height: 30px;
+  border-bottom: solid 1px #CCCCCC;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.menu-button:hover {
   color: #FFFFFF;
   background-color: #2C70ED;
+}
+
+
+
+.wikiArticle{
+  width:200px;
+}

@@ -1,5 +1,5 @@
 var places =  [ {
-    title: 'Stadt Blankenberglkjlkj',
+    title: 'Stadt Blankenberg',
       position:{lat: 50.764547,
       lng: 7.3593},
       url: 'http://www.butterflyhouse.org',
@@ -47,5 +47,15 @@ var places =  [ {
       highlight: ko.observable(false),
 
 
-  }
+  },
+  {
+      title: 'Schloss Error',
+        position:{lat: 50.77,
+        lng: 7.593},
+        url: 'http://www.butterflyhouse.org',
+        info:"test info",
+        highlight: ko.observable(false),
+
+
+    }
 ];

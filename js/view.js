@@ -14,7 +14,7 @@ var Place = function(obj){
 var map;
 var mapOptions =  {
           center: {lat: 50.783333, lng:  7.283333},
-          zoom: 13};
+          zoom: 11};
 
 
 
@@ -107,7 +107,14 @@ function wikiRequest(markerObj){
   dataType: "jsonp",
   success: function(response) {
     var wikiSummary = response[2][0];
-    markerObj.infowindow.setContent(wikiSummary);
+
+    if (wikiSummary){
+    markerObj.infowindow.setContent("<h2>"+ markerObj.title + "</h2><div class='wikiArticle'>" + wikiSummary + "</div><p>source: <a href='http://de.wikipedia.org'>Wikipedia </p>");
+  } else {
+
+    markerObj.infowindow.setContent("<h2>"+ markerObj.title + "</h2> Sorry,There is currently no Wikepedia Article is available");
+
+  }
     markerObj.infowindow.open(map,markerObj);
   },
   error: function(request,status,error){
@@ -141,6 +148,7 @@ marker[index].addListener("click", function(){
 
 //Close all 'markerObj.infowindows' in the 'marker' Array so that only one 'infowindow' is visible at any given time
 marker.forEach(function(markerObj){
+  
   markerObj.infowindow.close();
   markerObj.setAnimation(null);
 });
