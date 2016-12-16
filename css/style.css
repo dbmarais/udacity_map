@@ -1,3 +1,5 @@
+
+
 html, body {
   height: 100%;
   margin: 0;
@@ -5,31 +7,45 @@ html, body {
   display: block;
 }
 
-#main-menu {
-  background-color: #404040;
-  width:10%;
-  height:100%;
-  float:left;
 
-}
 
 #map{
   height:100%;
 }
 
 
-#main-menu{
-  position:absolute;
-  right: 10px;
-  bottom: 10px;
-  font-family: 'Roboto', sans-serif;
+#main-menu {
+  position: absolute;
+  top: 60px;
+  left: 0.5%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+  height: auto;
+  font-size: 0.9em;
+  overflow:scroll;
 
+
+
+}
+
+.search-input{
+  border:1px #CCCCCC solid;
 }
 
 ul {
   list-style-type: none;
+padding-left:0pt;
+
+
 }
-ul li {
+
+li {
   display: block;
   text-decoration: none;
   color: #000000;
@@ -38,14 +54,58 @@ ul li {
   border-bottom: solid 1px #CCCCCC;
   padding: 0 10px;
   cursor: pointer;
+
+
 }
+
 .menu-button:hover {
   color: #FFFFFF;
   background-color: #2C70ED;
-}
 
+}
 
 
 .wikiArticle{
   width:200px;
 }
+
+@media only screen and (max-width: 768px){
+
+  #main-menu {
+    position: fixed;
+    top: initial;
+    bottom: 10px;
+    left: 0.5%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 0px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: auto;
+    padding-left: 10px;
+    height:10%;
+    right:10px;
+    font-size: 1em;
+    display:flex;
+
+    align-items: center;
+
+  }
+.heading, .search-input {
+  display:none;
+}
+ul {
+  display:flex;
+
+}
+
+
+
+  li {
+    border-bottom: initial;
+    border-right: solid 1px #CCCCCC;
+
+    flex-grow: 1;
+  }
+  }

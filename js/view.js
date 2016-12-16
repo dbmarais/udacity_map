@@ -148,7 +148,7 @@ marker[index].addListener("click", function(){
 
 //Close all 'markerObj.infowindows' in the 'marker' Array so that only one 'infowindow' is visible at any given time
 marker.forEach(function(markerObj){
-  
+
   markerObj.infowindow.close();
   markerObj.setAnimation(null);
 });
@@ -213,24 +213,16 @@ this.filteredMarkerList.subscribe(function() {
 
 };
 
-
-
-
-
-
-
-
-
 var ViewModel = function(){
 
 var self = this;
 
   mapInit();
-  placeInit();
+  //placeInit();
   markerInit();
-console.log(markerArray);
+
  this.selectItem = function(listItem) {
-   console.log(listItem);
+
   google.maps.event.trigger(listItem, 'click');
 };
 
