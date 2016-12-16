@@ -27,7 +27,7 @@ var mapInit = function() {
 
 
 
-var placeInit = function() {
+var placeInit = function(marker) {
 
 
 
@@ -35,7 +35,7 @@ var placeInit = function() {
 this.query = ko.observable();
 
 //maybe computed does not take the Push method
-this.computedPlaceList = ko.computed(function(){
+this.filterdMarkerList = ko.computed(function(){
 
   if(!this.query()){
 
@@ -46,8 +46,8 @@ this.computedPlaceList = ko.computed(function(){
 
   } else {
 // 'ko.utils.arrayFilter' returns part of the array conforming to query
-    return ko.utils.arrayFilter(places,function(place){
-      return place.title.toLowerCase().indexOf(this.query().toLowerCase()) != -1;
+    return ko.utils.arrayFilter(marker,function(marker){
+      return marker.title.toLowerCase().indexOf(this.query().toLowerCase()) != -1;
     });
 
   }
@@ -148,7 +148,7 @@ marker.forEach(function(markerObj){
 //the Marker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
   wikiRequest(this);
   toggleBounce(this);
-  placeInit();
+  //placeInit();
  });
 
 
@@ -164,7 +164,44 @@ marker.forEach(function(markerObj){
 
 });
 //pass the array of markers to the next scope. Correct way.
+
+
 this.markerArray = marker;
+//Value of the input box bound to observable for use by Knockout
+this.query = ko.observable();
+
+//maybe computed does not take the Push method
+this.filteredMarkerList = ko.computed(function(){
+
+  if(!this.query()){
+
+    console.log("noFilter");
+
+//Complete places array is returned but only "places.title" are bound to the menu list.
+    return marker;
+
+  } else {
+// 'ko.utils.arrayFilter' returns part of the array conforming to query
+    return ko.utils.arrayFilter(marker,function(marker){
+      return marker.title.toLowerCase().indexOf(this.query().toLowerCase()) != -1;
+    });
+
+  }
+});
+
+
+this.filteredMarkerList.subscribe(function() {
+  var diffArray = ko.utils.compareArrays(self.markerArray, self.filteredMarkerList());
+  ko.utils.arrayForEach(diffArray, function(marker) {
+    if (marker.status === 'deleted') {
+      marker.value.setMap(null);
+    } else {
+      marker.value.setMap(map);
+    }
+  });
+});
+
+
 
 };
 

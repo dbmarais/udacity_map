@@ -1,5 +1,5 @@
 var places =  [ {
-    title: 'Stadt Blankenberg',
+    title: 'Stadt Blankenberglkjlkj',
       position:{lat: 50.764547,
       lng: 7.3593},
       url: 'http://www.butterflyhouse.org',
