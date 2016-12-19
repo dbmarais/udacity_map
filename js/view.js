@@ -2,9 +2,9 @@
 var Place = function(obj) {
 
 
-  this.title = ko.observable(obj.title);
-  this.postion = ko.observable(obj.position);
-  this.url = ko.observable(obj.url);
+  this.title = obj.title;
+  this.postion = obj.position;
+  this.url = obj.url;
 
 };
 
@@ -157,14 +157,17 @@ var markerInit = function() {
 
   };
 };
+function mapError(){
+  document.getElementById('map').innerHTML = 'Unable to load map. Please try again.';
 
+}
 // Bring everythign together
 var ViewModel = function() {
 
   var self = this;
 
   //Initialize the map
-  mapInit();
+  //mapInit(); moved to async
 
   //Initialize the Markers and the Menu
   markerInit();
