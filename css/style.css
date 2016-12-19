@@ -28,7 +28,7 @@ html, body {
   padding-left: 10px;
   height: auto;
   font-size: 0.9em;
-  overflow:scroll;
+
 
 
 
@@ -88,7 +88,7 @@ li {
     right:10px;
     font-size: 1em;
     display:flex;
-
+    overflow:scroll;
     align-items: center;
 
   }
