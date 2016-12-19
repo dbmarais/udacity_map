@@ -27,6 +27,7 @@ var mapInit = function() {
 
   map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+  ko.applyBindings(new ViewModel());
 };
 
 //----------------------------------
@@ -97,6 +98,8 @@ var markerInit = function() {
       }
     }
 
+
+
     //Listen for clicks that will make "infowindow" appear
     marker[index].addListener("click", function() {
 
@@ -110,6 +113,7 @@ var markerInit = function() {
       //Marker object is passed to the wikiRequest function so that is knows for which marker the infowindow should be opened.
       wikiRequest(this);
       toggleBounce(this);
+
 
     });
 
@@ -141,11 +145,17 @@ var markerInit = function() {
   // Change the markers on map to conform to 'filteredMarkerList'
   this.filteredMarkerList.subscribe(function() {
     var diffArray = ko.utils.compareArrays(self.markerArray, self.filteredMarkerList());
+
     ko.utils.arrayForEach(diffArray, function(marker) {
-      if (marker.status === 'deleted') {
-        marker.value.setMap(null);
+
+
+
+      if (marker.status === 'added') {
+
+        marker.value.visible = false;
+
       } else {
-        marker.value.setMap(map);
+        marker.value.visible = true;
       }
     });
   });
@@ -166,14 +176,9 @@ var ViewModel = function() {
 
   var self = this;
 
-  //Initialize the map
-  //mapInit(); moved to async
+
 
   //Initialize the Markers and the Menu
   markerInit();
 
 };
-
-
-
-ko.applyBindings(new ViewModel());
