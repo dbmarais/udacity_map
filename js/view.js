@@ -1,4 +1,3 @@
-
 var Place = function(obj) {
 
 
@@ -146,7 +145,7 @@ var markerInit = function() {
   // Change the markers on map to conform to 'filteredMarkerList'
   this.filteredMarkerList.subscribe(function() {
     var diffArray = ko.utils.compareArrays(marker, self.filteredMarkerList());
-    console.log(diffArray);
+    
     ko.utils.arrayForEach(diffArray, function(marker) {
 
 
@@ -168,7 +167,8 @@ var markerInit = function() {
 
   };
 };
-function mapError(){
+
+function mapError() {
   document.getElementById('map').innerHTML = 'Unable to load map. Please try again.';
 
 }
