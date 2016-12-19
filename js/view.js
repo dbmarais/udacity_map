@@ -51,6 +51,7 @@ var markerInit = function() {
       animation: google.maps.Animation.DROP,
     });
 
+
     //Create 'infowindow' for each marker in the 'marker' array
     marker[index].infowindow = new google.maps.InfoWindow();
 
@@ -144,18 +145,18 @@ var markerInit = function() {
 
   // Change the markers on map to conform to 'filteredMarkerList'
   this.filteredMarkerList.subscribe(function() {
-    var diffArray = ko.utils.compareArrays(self.markerArray, self.filteredMarkerList());
-
+    var diffArray = ko.utils.compareArrays(marker, self.filteredMarkerList());
+    console.log(diffArray);
     ko.utils.arrayForEach(diffArray, function(marker) {
 
 
 
-      if (marker.status === 'added') {
-
-        marker.value.visible = false;
-
+      if (marker.status === 'deleted') {
+        marker.value.setVisible(false);
       } else {
-        marker.value.visible = true;
+        marker.value.setVisible(true);
+
+
       }
     });
   });
