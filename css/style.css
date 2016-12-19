@@ -1,19 +1,12 @@
-
-
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   display: block;
 }
-
-
-
-#map{
-  height:100%;
+#map {
+  height: 100%;
 }
-
-
 #main-menu {
   position: absolute;
   top: 60px;
@@ -23,26 +16,18 @@ html, body {
   padding: 5px;
   border: 1px solid #999;
   text-align: center;
-  font-family: 'Roboto','sans-serif';
+  font-family: 'Roboto', 'sans-serif';
   line-height: 30px;
   padding-left: 10px;
   height: auto;
   font-size: 0.9em;
-
-
-
-
 }
-
-.search-input{
-  border:1px #CCCCCC solid;
+.search-input {
+  border: 1px #CCCCCC solid;
 }
-
 ul {
   list-style-type: none;
-padding-left:0pt;
-
-
+  padding-left: 0pt;
 }
 
 li {
@@ -54,23 +39,18 @@ li {
   border-bottom: solid 1px #CCCCCC;
   padding: 0 10px;
   cursor: pointer;
-
-
 }
-
 .menu-button:hover {
   color: #FFFFFF;
   background-color: #2C70ED;
+}
 
+.wikiArticle {
+  width: 200px;
 }
 
 
-.wikiArticle{
-  width:200px;
-}
-
-@media only screen and (max-width: 768px){
-
+@media only screen and (max-width: 768px) {
   #main-menu {
     position: fixed;
     top: initial;
@@ -81,31 +61,25 @@ li {
     padding: 0px;
     border: 1px solid #999;
     text-align: center;
-    font-family: 'Roboto','sans-serif';
+    font-family: 'Roboto', 'sans-serif';
     line-height: auto;
     padding-left: 10px;
-    height:10%;
-    right:10px;
+    height: 10%;
+    right: 10px;
     font-size: 1em;
-    display:flex;
-    overflow:scroll;
+    display: flex;
+    overflow: scroll;
     align-items: center;
-
   }
-.heading, .search-input {
-  display:none;
-}
-ul {
-  display:flex;
-
-}
-
-
-
+  .heading, .search-input {
+    display: none;
+  }
+  ul {
+    display: flex;
+  }
   li {
     border-bottom: initial;
     border-right: solid 1px #CCCCCC;
-
     flex-grow: 1;
   }
-  }
+}
